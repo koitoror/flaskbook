@@ -48,7 +48,7 @@ class Message(db.Document):
         if AWS_BUCKET:
             return os.path.join(AWS_CONTENT_URL, AWS_BUCKET, 'posts', '%s.%s.%s.png' % (self.id, image_ts, size))
         else:
-            return url_for('static', filename=os.path.join(STATIC_IMAGE_URL, 'posts', '%s.%s.%s.png' % (self.id, image_ts, size)))
+            return url_for('static', filename=os.path.join(STATIC_IMAGE_URL, 'posts/', '%s.%s.%s.png' % (self.id, image_ts, size)))
     
     meta = {
         'indexes': [('from_user', 'to_user', '-create_date', 'parent', 'message_type', 'live')]
