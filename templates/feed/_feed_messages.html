@@ -17,6 +17,7 @@
     <div class="media-images">
     {% for image in message.images %}
       <img class="img-thumbnail" src="{{ message.post_imgsrc(image.ts, 'xlg') }}" width="{{ image.w }}" height="200" alt="" />
+      
     {% endfor %}
     </div> <!-- media-images -->
     {% endif %}
