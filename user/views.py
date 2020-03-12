@@ -21,8 +21,9 @@ user_app = Blueprint('user_app', __name__)
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        password = form.password.data.encode('utf-8')
         salt = bcrypt.gensalt()
-        hashed_password = bcrypt.hashpw(form.password.data, salt)
+        hashed_password = bcrypt.hashpw(password, salt)
         code = str(uuid.uuid4())
         user = User(
             username=form.username.data,
@@ -58,7 +59,7 @@ def login():
             username=form.username.data
             ).first()
         if user:
-            if bcrypt.hashpw(form.password.data, user.password) == user.password:
+            if bcrypt.hashpw(form.password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 session['username'] = form.username.data
                 if 'next' in session:
                     next = session.get('next')
@@ -265,10 +266,11 @@ def change_password():
         
     if request.method == 'POST':
         if form.validate_on_submit():
-            if bcrypt.hashpw(form.current_password.data, user.password) == user.password:
+            if bcrypt.hashpw(form.current_password.data.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 salt = bcrypt.gensalt()
-                hashed_password = bcrypt.hashpw(form.password.data, salt)
-                user.password = hashed_password
+                password = form.password.data.encode('utf-8')
+                hashed_password = bcrypt.hashpw(password, salt)
+                user.password = hashed_password.decode()
                 user.save()
                 # if user is logged in, log him out
                 if session.get('username'):
