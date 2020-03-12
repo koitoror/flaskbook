@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm as Form
 from wtforms import validators, StringField, PasswordField
 from wtforms.widgets import TextArea
 from wtforms.fields.html5 import EmailField
