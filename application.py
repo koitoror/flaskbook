@@ -4,7 +4,7 @@ from flask.ext.mongoengine import MongoEngine
 db = MongoEngine()
 
 def create_app(**config_overrides):
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path="/static")
     app.config.from_pyfile('settings.py')
     
     app.config.update(config_overrides)
