@@ -10,3 +10,5 @@ venv
 env
 settings.py
 static/images
+Pipfile
+.vscode
