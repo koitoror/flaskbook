@@ -40,7 +40,7 @@ def register():
         # email the user
         body_html = render_template('mail/user/register.html', user=user)
         body_text = render_template('mail/user/register.txt', user=user)
-        email(user.email, "Welcome to Flaskbook", body_html, body_text)
+        email(user.email, "Welcome to ASBC", body_html, body_text)
         
         user.save()
         return redirect(url_for('home_app.home'))
