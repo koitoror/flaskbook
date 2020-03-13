@@ -40,6 +40,11 @@ cd flaskbook
 Install the packages.
 ```
 pip3 install -r requirements.txt
+
+```
+In order to use mongo+srv protocol, you need to install pymongo-srv
+```
+pip3 install pymongo[srv]
 ```
 
 ## APP Usage
@@ -47,13 +52,12 @@ pip3 install -r requirements.txt
 To get the app running...
 
 ```bash
-$ mongo --shell 
+$ mongo --shell
 'use <database-name>;'
 ```
 
 ```bash
-
-$ mongo --shell
+$ mongo
 'show dbs'
 "
 db.createUser(
@@ -65,8 +69,11 @@ db.createUser(
 )
 create user <your-user-name> with password <your-password> createdb"
 
-$ HOSTNAME = 'mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=<database-name>'
-$ HOSTNAME = 'mongodb+srv://<new-user>:<some-password>@cluster0-hcxxx.mongodb.net/<db-name>?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Community&retryWrites=true&ssl=true'
+$ MONGODB_SETTINGS = {
+    # 'db': 'flaskbook',
+    'host': 'mongodb+srv://<new-user>:<some-password>@cluster0-hcxxx.mongodb.net/<db-name>?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Community&retryWrites=true&ssl=true'
+}
+$ HOSTNAME = 'HOSTNAME = 'https://yourapp-youruser.pythonanywhere.com'
 
 ```
 
